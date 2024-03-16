@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../themes/app_theme.dart';
+import 'folge_player.dart';
 import 'home_page.dart';
 import 'your_relay.dart';
 
@@ -24,13 +25,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    getStoriesService.getStoriesCall();
   }
 
   @override
   void dispose() {
     super.dispose();
-    getStoriesService.dispose();
   }
 
   @override
@@ -164,7 +163,7 @@ class _MainScreenState extends State<MainScreen> {
               case 'yourRelay':
                 return MaterialPageRoute(builder: (_) => YourRelay());
               case 'folgePlayer':
-                return MaterialPageRoute(builder: (_) => FolgePlayer(getStoriesService: getStoriesService, currentEpisode: args as CurrentEpisode), fullscreenDialog: true);
+                return MaterialPageRoute(builder: (_) => FolgePlayer(), fullscreenDialog: true);
               default:
                 Navigator.pushNamed(context, '${settings.name}', arguments: settings.arguments);
             }
@@ -177,20 +176,9 @@ class _MainScreenState extends State<MainScreen> {
   List<Route<dynamic>> defaultGenerateInitialRoutes(NavigatorState navigator, String initialRouteName) {
 
     List<MaterialPageRoute> routes = [];
-    routes.add(MaterialPageRoute(builder: (context) => MainPage(getStoriesService: getStoriesService,)));
+    routes.add(MaterialPageRoute(builder: (context) => MyProjectsPage()));
 
-    //  if want's to open
-    switch(widget.screenType){
-      case 'YourRelay':
-        routes.add(MaterialPageRoute(builder: (context) => MyProjectsPage(getStoriesService: getStoriesService,)));
-        routes.add(MaterialPageRoute(builder: (context) => YourRelay(index: 0,getStoriesService: getStoriesService,)));
-        break;
-      case 'MyProjectsPage':
-        routes.add(MaterialPageRoute(builder: (context) => MyProjectsPage(getStoriesService: getStoriesService,)));
-        break;
-      default:
-        break;
-    }
+
     return routes;
   }
 
