@@ -4,8 +4,8 @@ import 'package:untitled/screens/login_screen.dart';
 import 'package:untitled/themes/app_theme.dart';
 
 
-class MyAPp extends StatefulWidget {
-  const MyAPp({Key? key}) : super(key: key);
+class DemoApp extends StatefulWidget {
+  const DemoApp({Key? key}) : super(key: key);
 
   @override
   _TriggerCoachState createState() {
@@ -13,7 +13,7 @@ class MyAPp extends StatefulWidget {
   }
 }
 
-class _TriggerCoachState extends State<MyAPp>  with WidgetsBindingObserver{
+class _TriggerCoachState extends State<DemoApp>  with WidgetsBindingObserver{
   @override
   void initState() {
     super.initState();
